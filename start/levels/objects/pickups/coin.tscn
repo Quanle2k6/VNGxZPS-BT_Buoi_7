@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://j7ayjmvxh5uj"]
+
+[ext_resource type="Script" uid="uid://bgb06lv0ge6m3" path="res://levels/objects/pickups/coin.gd" id="1_qh51m"]
+[ext_resource type="Texture2D" uid="uid://b5wj1l2es2q2b" path="res://assets/items/coin/01.png" id="2_52vr2"]
+[ext_resource type="Texture2D" uid="uid://b0ixfmxh7dj34" path="res://assets/items/coin/02.png" id="3_ragvy"]
+[ext_resource type="Texture2D" uid="uid://cth4uj6exw1t6" path="res://assets/items/coin/03.png" id="4_t36pq"]
+[ext_resource type="Texture2D" uid="uid://bucvb7gbtvqrn" path="res://assets/items/coin/04.png" id="5_g14ms"]
+[ext_resource type="Texture2D" uid="uid://gsqvp06htmiu" path="res://assets/items/effect/01.png" id="6_nhwak"]
+[ext_resource type="Texture2D" uid="uid://h6882tqhdapl" path="res://assets/items/effect/02.png" id="7_qpj7i"]
+[ext_resource type="Texture2D" uid="uid://clhspevhwt16k" path="res://assets/items/effect/03.png" id="8_d1jqh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jpyye"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_52vr2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ragvy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_t36pq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g14ms")
+}],
+"loop": 1,
+"name": &"spin",
+"speed": 8.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_orua6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_nhwak")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qpj7i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_d1jqh")
+}],
+"loop": 0,
+"name": &"pop",
+"speed": 12.0
+}]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o88mx"]
+radius = 0.6
+
+[node name="Coin" type="Area3D" unique_id=2026437157]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_qh51m")
+
+[node name="Sprite" type="AnimatedSprite3D" parent="." unique_id=1248680958]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+offset = Vector2(0, 8)
+pixel_size = 0.0625
+billboard = 1
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_jpyye")
+animation = &"spin"
+autoplay = "spin"
+frame_progress = 0.119372375
+
+[node name="Effect" type="AnimatedSprite3D" parent="." unique_id=1834425628]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+visible = false
+offset = Vector2(0, 8)
+sprite_frames = SubResource("SpriteFrames_orua6")
+animation = &"pop"
+frame = 1
+frame_progress = 0.8329783
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=104228474]
+shape = SubResource("SphereShape3D_o88mx")

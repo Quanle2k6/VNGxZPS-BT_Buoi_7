@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bk8e5i24j6b02"]
+
+[ext_resource type="Script" uid="uid://c4c5bloiqjaky" path="res://levels/objects/pickups/powerup_pickup.gd" id="1_0vmuc"]
+[ext_resource type="Texture2D" uid="uid://gsqvp06htmiu" path="res://assets/items/effect/01.png" id="2_wadxp"]
+[ext_resource type="Texture2D" uid="uid://h6882tqhdapl" path="res://assets/items/effect/02.png" id="3_alo0g"]
+[ext_resource type="Texture2D" uid="uid://clhspevhwt16k" path="res://assets/items/effect/03.png" id="4_kpme1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jpyye"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wadxp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_alo0g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kpme1")
+}],
+"loop": 0,
+"name": &"pop",
+"speed": 12.0
+}]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_orua6"]
+radius = 0.6
+
+[node name="PowerupPickup" type="Area3D" unique_id=617464692]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_0vmuc")
+
+[node name="Sprite" type="Sprite3D" parent="." unique_id=1893134239]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+offset = Vector2(0, 8)
+pixel_size = 0.0625
+billboard = 1
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+
+[node name="Effect" type="AnimatedSprite3D" parent="." unique_id=1369797693]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+visible = false
+offset = Vector2(0, 8)
+pixel_size = 0.0625
+billboard = 1
+shaded = true
+alpha_cut = 1
+sprite_frames = SubResource("SpriteFrames_jpyye")
+animation = &"pop"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2044398635]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("SphereShape3D_orua6")

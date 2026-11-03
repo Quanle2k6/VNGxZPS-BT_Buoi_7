@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://v8kno7t6ge1k"]
+
+[ext_resource type="Script" uid="uid://bver4lqp0k8cj" path="res://levels/objects/pickups/speed_up.gd" id="1_3118x"]
+[ext_resource type="Texture2D" uid="uid://chs185jxqgbqe" path="res://assets/items/speed_up.png" id="2_3c3j1"]
+[ext_resource type="Texture2D" uid="uid://gsqvp06htmiu" path="res://assets/items/effect/01.png" id="3_7gtpm"]
+[ext_resource type="Texture2D" uid="uid://h6882tqhdapl" path="res://assets/items/effect/02.png" id="4_c1h0u"]
+[ext_resource type="Texture2D" uid="uid://clhspevhwt16k" path="res://assets/items/effect/03.png" id="5_73v52"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_orua6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7gtpm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_c1h0u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_73v52")
+}],
+"loop": 0,
+"name": &"pop",
+"speed": 12.0
+}]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o88mx"]
+radius = 0.6
+
+[node name="SpeedUp" type="Area3D" unique_id=2026437157]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_3118x")
+
+[node name="Sprite" type="Sprite3D" parent="." unique_id=542453562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+offset = Vector2(0, 16)
+pixel_size = 0.0625
+billboard = 1
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("2_3c3j1")
+
+[node name="Effect" type="AnimatedSprite3D" parent="." unique_id=1834425628]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+visible = false
+offset = Vector2(0, 24)
+pixel_size = 0.0625
+shaded = true
+sprite_frames = SubResource("SpriteFrames_orua6")
+animation = &"pop"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=104228474]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("SphereShape3D_o88mx")
